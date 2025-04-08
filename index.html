@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube创作者工具导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f7;
+            color: #333;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .search-container {
+            margin: 0 auto 40px;
+            max-width: 600px;
+            position: relative;
+            display: flex;
+        }
+        #search {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: 10px 0 0 10px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+        #search-button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 0 10px 10px 0;
+            padding: 0 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        #search-button:hover {
+            background-color: #004499;
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .category {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        .category h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .tool-list {
+            list-style: none;
+        }
+        .tool-item {
+            margin-bottom: 15px;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .tool-item:last-child {
+            margin-bottom: 0;
+        }
+        .tool-link {
+            text-decoration: none;
+            color: #0066cc;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+        .tool-link:hover {
+            color: #004499;
+        }
+        .tool-description {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            font-size: 18px;
+            color: #666;
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .categories {
+                grid-template-columns: 1fr;
+            }
+            header {
+                padding: 30px 0;
+            }
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>YouTube创作者工具导航</h1>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="搜索工具..." autocomplete="off">
+            <button id="search-button">搜索</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="no-results">没有找到相关工具，请尝试其他关键词</div>
+        <div class="categories">
+            <!-- 选题与市场研究 -->
+            <div class="category" data-category="选题与市场研究">
+                <h2>选题与市场研究</h2>
+                <ul class="tool-list">
+                    <li class="tool-item">
+                        <a href="https://vidiq.com/" target="_blank" class="tool-link">VidIQ</a>
+                        <div class="tool-description">热门话题分析和关键词研究工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://tubebuddy.com/" target="_blank" class="tool-link">TubeBuddy</a>
+                        <div class="tool-description">YouTube关键词优化和竞争分析工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://keywordtool.io/youtube" target="_blank" class="tool-link">Keyword Tool</a>
+                        <div class="tool-description">YouTube关键词生成和规划工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.google.com/trends" target="_blank" class="tool-link">Google Trends</a>
+                        <div class="tool-description">搜索趋势分析和热门话题发现</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.morningfa.me/" target="_blank" class="tool-link">MorningFame</a>
+                        <div class="tool-description">YouTube数据分析和选题策略</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 频道分析与对标 -->
+            <div class="category" data-category="频道分析与对标">
+                <h2>频道分析与对标</h2>
+                <ul class="tool-list">
+                    <li class="tool-item">
+                        <a href="https://socialblade.com/" target="_blank" class="tool-link">Social Blade</a>
+                        <div class="tool-description">YouTube频道统计和增长分析</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://noxinfluencer.com/" target="_blank" class="tool-link">NoxInfluencer</a>
+                        <div class="tool-description">竞争对手分析和频道对比工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.channelcrawler.com/" target="_blank" class="tool-link">Channel Crawler</a>
+                        <div class="tool-description">YouTube频道高级搜索和筛选</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.rivaliq.com/" target="_blank" class="tool-link">Rival IQ</a>
+                        <div class="tool-description">社交媒体竞争分析和基准评测</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.statista.com/" target="_blank" class="tool-link">Statista</a>
+                        <div class="tool-description">行业数据和市场研究报告</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 内容创作工具 -->
+            <div class="category" data-category="内容创作工具">
+                <h2>内容创作工具</h2>
+                <ul class="tool-list">
+                    <li class="tool-item">
+                        <a href="https://www.canva.com/" target="_blank" class="tool-link">Canva</a>
+                        <div class="tool-description">缩略图和图形设计工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.descript.com/" target="_blank" class="tool-link">Descript</a>
+                        <div class="tool-description">AI驱动的视频和音频编辑平台</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.pexels.com/" target="_blank" class="tool-link">Pexels</a>
+                        <div class="tool-description">免费高质量图片和视频素材</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.epidemicsound.com/" target="_blank" class="tool-link">Epidemic Sound</a>
+                        <div class="tool-description">无版权音乐和音效库</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.davinciresolve.com/" target="_blank" class="tool-link">DaVinci Resolve</a>
+                        <div class="tool-description">专业级视频编辑和后期制作软件</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 视频下载与格式转换 -->
+            <div class="category" data-category="视频下载与格式转换">
+                <h2>视频下载与格式转换</h2>
+                <ul class="tool-list">
+                    <li class="tool-item">
+                        <a href="https://www.4kdownload.com/" target="_blank" class="tool-link">4K Video Downloader</a>
+                        <div class="tool-description">高清视频下载工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.anymp4.com/" target="_blank" class="tool-link">AnyMP4</a>
+                        <div class="tool-description">视频格式转换和编辑工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.handbrake.fr/" target="_blank" class="tool-link">HandBrake</a>
+                        <div class="tool-description">开源视频转码和压缩工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.onlinevideoconverter.com/" target="_blank" class="tool-link">Online Video Converter</a>
+                        <div class="tool-description">在线视频转换服务</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.clipchamp.com/" target="_blank" class="tool-link">Clipchamp</a>
+                        <div class="tool-description">在线视频编辑和压缩工具</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 变现与收益评估 -->
+            <div class="category" data-category="变现与收益评估">
+                <h2>变现与收益评估</h2>
+                <ul class="tool-list">
+                    <li class="tool-item">
+                        <a href="https://influencermarketinghub.com/youtube-money-calculator/" target="_blank" class="tool-link">YouTube收益计算器</a>
+                        <div class="tool-description">估算频道潜在收入</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://grin.co/" target="_blank" class="tool-link">GRIN</a>
+                        <div class="tool-description">品牌合作和赞助管理平台</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.patreon.com/" target="_blank" class="tool-link">Patreon</a>
+                        <div class="tool-description">粉丝订阅和会员制平台</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.ko-fi.com/" target="_blank" class="tool-link">Ko-fi</a>
+                        <div class="tool-description">创作者打赏和支持平台</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.afluencer.com/" target="_blank" class="tool-link">Afluencer</a>
+                        <div class="tool-description">影响者营销和品牌对接平台</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 多平台分发工具 -->
+            <div class="category" data-category="多平台分发工具">
+                <h2>多平台分发工具</h2>
+                <ul class="tool-list">
+                    <li class="tool-item">
+                        <a href="https://www.repurpose.io/" target="_blank" class="tool-link">Repurpose.io</a>
+                        <div class="tool-description">内容重用和跨平台分发工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.hootsuite.com/" target="_blank" class="tool-link">Hootsuite</a>
+                        <div class="tool-description">社交媒体管理和定时发布</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://buffer.com/" target="_blank" class="tool-link">Buffer</a>
+                        <div class="tool-description">多平台内容发布和分析</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://www.contentcal.io/" target="_blank" class="tool-link">ContentCal</a>
+                        <div class="tool-description">内容日历和团队协作工具</div>
+                    </li>
+                    <li class="tool-item">
+                        <a href="https://later.com/" target="_blank" class="tool-link">Later</a>
+                        <div class="tool-description">视觉社交媒体规划工具</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 YouTube创作者工具导航 | 为视频创作者提供最佳工具</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search');
+            const searchButton = document.getElementById('search-button');
+            const categories = document.querySelectorAll('.category');
+            const toolItems = document.querySelectorAll('.tool-item');
+            const noResults = document.querySelector('.no-results');
+            
+            // 定义搜索函数
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                let resultsFound = false;
+                
+                if (searchTerm === '') {
+                    // 如果搜索框为空，显示所有类别和工具
+                    categories.forEach(category => {
+                        category.style.display = 'block';
+                        const tools = category.querySelectorAll('.tool-item');
+                        tools.forEach(tool => {
+                            tool.style.display = 'block';
+                        });
+                    });
+                    noResults.style.display = 'none';
+                    return;
+                }
+                
+                // 搜索逻辑
+                categories.forEach(category => {
+                    const categoryName = category.getAttribute('data-category').toLowerCase();
+                    const tools = category.querySelectorAll('.tool-item');
+                    let categoryHasResults = false;
+                    
+                    tools.forEach(tool => {
+                        const toolName = tool.querySelector('.tool-link').textContent.toLowerCase();
+                        const toolDescription = tool.querySelector('.tool-description').textContent.toLowerCase();
+                        
+                        if (toolName.includes(searchTerm) || toolDescription.includes(searchTerm) || categoryName.includes(searchTerm)) {
+                            tool.style.display = 'block';
+                            categoryHasResults = true;
+                            resultsFound = true;
+                        } else {
+                            tool.style.display = 'none';
+                        }
+                    });
+                    
+                    // 如果类别中有匹配的工具，显示该类别，否则隐藏
+                    if (categoryHasResults) {
+                        category.style.display = 'block';
+                    } else {
+                        category.style.display = 'none';
+                    }
+                });
+                
+                // 显示或隐藏"没有结果"的消息
+                if (resultsFound) {
+                    noResults.style.display = 'none';
+                } else {
+                    noResults.style.display = 'block';
+                }
+            }
+            
+            // 点击搜索按钮时执行搜索
+            searchButton.addEventListener('click', performSearch);
+            
+            // 按下回车键时也执行搜索
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // 实时搜索（输入时搜索）
+            searchInput.addEventListener('input', performSearch);
+        });
+    </script>
+</body>
+</html>
